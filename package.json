@@ -1,0 +1,40 @@
+{
+  "name": "smart-sarkari-sathi-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Smart Sarkari Sathi - Government Schemes and Scholarships Portal",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "react",
+    "government",
+    "schemes",
+    "scholarships",
+    "frontend"
+  ],
+  "author": "Smart Sarkari Sathi Team",
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^0.263.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.1",
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

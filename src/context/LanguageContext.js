@@ -1,0 +1,240 @@
+import React, { createContext, useContext, useState } from 'react';
+
+const LanguageContext = createContext();
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
+
+export const LanguageProvider = ({ children }) => {
+  const [language, setLanguage] = useState('english');
+
+  const translations = {
+    english: {
+      home: 'Home',
+      schemes: 'Schemes',
+      scholarships: 'Scholarships',
+      news: 'News',
+      about: 'About',
+      getStarted: 'Get Started',
+      heroTitle: 'Your Gateway to',
+      government: 'Government',
+      benefits: 'Benefits',
+      heroDescription: 'Discover government schemes, scholarships, and authentic news that matter to you. Sevika makes accessing public services simple, transparent, and accessible for everyone.',
+      searchPlaceholder: 'Search for schemes, scholarships, or news...',
+      search: 'Search',
+      exploreSchemes: 'Explore Schemes',
+      latestNews: 'Latest News',
+      schemeRecommender: 'Scheme Recommender',
+      schemeRecommenderDesc: 'Find eligible government schemes',
+      fakeNewsChecker: 'Fake News Checker',
+      fakeNewsCheckerDesc: 'Detect misleading or fake information online',
+      applicationTracker: 'Application Tracker',
+      applicationTrackerDesc: 'Track your scheme applications',
+      scholarshipResources: 'Scholarship Resources',
+      scholarshipResourcesDesc: 'View documents and eligibility',
+      successRate: '95% Success Rate',
+      verifiedAuthentic: 'Verified Authentic',
+      monthlyUsers: '50K+ This Month',
+      // Login/Signup translations
+      login: 'Login',
+      signup: 'Sign Up',
+      loginSubtitle: 'Welcome! Please enter your details.',
+      signupSubtitle: 'Create your account to get started.',
+      email: 'Email',
+      password: 'Password',
+      confirmPassword: 'Confirm Password',
+      fullName: 'Full Name',
+      enterEmail: 'Enter your email',
+      enterPassword: 'Enter your password',
+      enterFullName: 'Enter your full name',
+      noAccount: "Don't have an account?",
+      haveAccount: 'Already have an account?',
+      loading: 'Loading...',
+      logout: 'Logout',
+      // OTP translations
+      sendOTP: 'Send OTP',
+      resendOTP: 'Resend OTP',
+      otpSent: 'OTP sent successfully!',
+      otpResent: 'OTP resent successfully!',
+      otpSentTitle: 'Check Your Email',
+      otpSentMessage: 'We\'ve sent a login link to {email}',
+      checkEmail: 'Please check your email for the login link',
+      changeEmail: 'Change Email',
+      sending: 'Sending...',
+      sendLink: 'Send Login Link',
+      linkSent: 'Login link sent! Please check your email.',
+      checkEmailLink: 'Check your email for the login link',
+      linkSentTo: 'Login link sent to {email}',
+      verifyingLink: 'Verifying login link...',
+      loginSuccess: 'Login successful!',
+      instructions: 'Instructions:',
+      instruction1: 'Check your email inbox (and spam folder)',
+      instruction2: 'Click the login link in the email',
+      instruction3: 'You\'ll be automatically logged in',
+      verifyingOTP: 'Verifying OTP...',
+      verificationFailed: 'OTP verification failed. Please try again.',
+      // Email OTP translations
+      sending: 'Sending...',
+      sendOTP: 'Send OTP',
+      otpSent: 'OTP sent successfully!',
+      otpResent: 'OTP resent successfully!',
+      enterOTP: 'Enter OTP',
+      otpCode: 'OTP Code',
+      enterOTPCode: 'Enter 6-digit OTP',
+      otpHint: 'Enter the 6-digit code sent to your email',
+      verifyOTP: 'Verify OTP',
+      verifying: 'Verifying...',
+      otpSentTo: 'OTP sent to {email}',
+      changeEmail: 'Change Email',
+      emailHint: 'Enter your email address to receive OTP',
+      // Additional translations for Login component
+      loginToAccess: 'Login to access personalized schemes and track your applications',
+      welcomeMessage: 'We\'ve sent a verification code to your email',
+      enterOTPTitle: 'Enter OTP',
+      secureLogin: 'Secure login powered by Smart Sarkari Sathi',
+      otpSentToEmail: 'OTP sent to {email}',
+      enterSixDigit: 'Enter 6-digit code',
+      sixDigitHint: 'Enter the 6-digit code sent to your email',
+      // About page translations
+      aboutTitle: 'About Smart Sarkari Sathi',
+      aboutDescription: 'Smart Sarkari Sathi is an AI-powered digital assistant designed to simplify access to government schemes, services, and information for every citizen of India.',
+      ourMission: 'Our Mission',
+      missionDescription: 'To bridge the gap between people and the often complex, scattered world of public services by offering a single, easy-to-use platform. We aim to ensure equitable access to resources and opportunities for all citizens through innovative solutions and collaborative partnerships.',
+      whatWeOffer: 'What We Offer',
+      searchDiscover: 'Search & Discover',
+      searchDescription: 'Government schemes relevant to your profile, location, and eligibility',
+      personalizedRecommendations: 'Personalized Recommendations',
+      personalizedDescription: 'Based on age, profession, income, and other factors',
+      multilingualSupport: 'Multilingual Support',
+      multilingualDescription: 'Inclusivity across India\'s diverse population',
+      aiPowered: 'AI-Powered',
+      aiDescription: 'Machine learning for accurate, timely services',
+      ourVision: 'Our Vision',
+      visionDescription1: 'We envision a future where no citizen misses out on the opportunities and support they deserve. Our platform integrates AI, machine learning, and government data APIs to provide accurate, timely, and citizen-friendly services.',
+      visionDescription2: 'Smart Sarkari Sathi is the first step toward that goal — acting as your trusted companion in navigating the public service ecosystem.'
+    },
+    hindi: {
+      home: 'होम',
+      schemes: 'योजनाएं',
+      scholarships: 'छात्रवृत्ति',
+      news: 'समाचार',
+      about: 'हमारे बारे में',
+      getStarted: 'शुरू करें',
+      heroTitle: 'आपका प्रवेश द्वार',
+      government: 'सरकारी',
+      benefits: 'लाभों का',
+      heroDescription: 'सरकारी योजनाओं, छात्रवृत्तियों और प्रामाणिक समाचारों की खोज करें जो आपके लिए महत्वपूर्ण हैं। सेविका सार्वजनिक सेवाओं तक पहुंच को सरल, पारदर्शी और सभी के लिए सुलभ बनाती है।',
+      searchPlaceholder: 'योजनाओं, छात्रवृत्तियों या समाचारों के लिए खोजें...',
+      search: 'खोजें',
+      exploreSchemes: 'योजनाएं देखें',
+      latestNews: 'ताजा समाचार',
+      schemeRecommender: 'योजना सुझावक',
+      schemeRecommenderDesc: 'पात्र सरकारी योजनाएं खोजें',
+      fakeNewsChecker: 'फेक न्यूज चेकर',
+      fakeNewsCheckerDesc: 'गुमराह करने वाली या फर्जी जानकारी का पता लगाएं',
+      applicationTracker: 'आवेदन ट्रैकर',
+      applicationTrackerDesc: 'अपने योजना आवेदनों को ट्रैक करें',
+      scholarshipResources: 'छात्रवृत्ति संसाधन',
+      scholarshipResourcesDesc: 'दस्तावेज और पात्रता देखें',
+      successRate: '95% सफलता दर',
+      verifiedAuthentic: 'सत्यापित प्रामाणिक',
+      monthlyUsers: 'इस महीने 50K+',
+      // Login/Signup translations
+      login: 'लॉगिन',
+      signup: 'साइन अप',
+      loginSubtitle: 'स्वागत है! कृपया अपना विवरण दर्ज करें।',
+      signupSubtitle: 'शुरू करने के लिए अपना खाता बनाएं।',
+      email: 'ईमेल',
+      password: 'पासवर्ड',
+      confirmPassword: 'पासवर्ड की पुष्टि करें',
+      fullName: 'पूरा नाम',
+      enterEmail: 'अपना ईमेल दर्ज करें',
+      enterPassword: 'अपना पासवर्ड दर्ज करें',
+      enterFullName: 'अपना पूरा नाम दर्ज करें',
+      noAccount: 'खाता नहीं है?',
+      haveAccount: 'पहले से ही खाता है?',
+      loading: 'लोड हो रहा है...',
+      logout: 'लॉगआउट',
+      // OTP translations
+      sendOTP: 'OTP भेजें',
+      resendOTP: 'OTP पुनः भेजें',
+      otpSent: 'OTP सफलतापूर्वक भेजा गया!',
+      otpResent: 'OTP पुनः सफलतापूर्वक भेजा गया!',
+      otpSentTitle: 'अपना ईमेल देखें',
+      otpSentMessage: 'हमने {email} पर लॉगिन लिंक भेजा है',
+      checkEmail: 'कृपया लॉगिन लिंक के लिए अपना ईमेल देखें',
+      changeEmail: 'ईमेल बदलें',
+      sending: 'भेज रहा है...',
+      sendLink: 'लॉगिन लिंक भेजें',
+      linkSent: 'लॉगिन लिंक भेजा गया! कृपया अपना ईमेल देखें।',
+      checkEmailLink: 'लॉगिन लिंक के लिए अपना ईमेल देखें',
+      linkSentTo: 'लॉगिन लिंक {email} पर भेजा गया',
+      verifyingLink: 'लॉगिन लिंक सत्यापित कर रहा है...',
+      loginSuccess: 'लॉगिन सफल!',
+      instructions: 'निर्देश:',
+      instruction1: 'अपना ईमेल इनबॉक्स (और स्पैम फोल्डर) देखें',
+      instruction2: 'ईमेल में लॉगिन लिंक पर क्लिक करें',
+      instruction3: 'आप स्वचालित रूप से लॉगिन हो जाएंगे',
+      verifyingOTP: 'OTP सत्यापित कर रहा है...',
+      verificationFailed: 'OTP सत्यापन विफल रहा। कृपया पुनः प्रयास करें।',
+      // Email OTP translations
+      sending: 'भेज रहा है...',
+      sendOTP: 'OTP भेजें',
+      otpSent: 'OTP सफलतापूर्वक भेजा गया!',
+      otpResent: 'OTP पुनः सफलतापूर्वक भेजा गया!',
+      enterOTP: 'OTP दर्ज करें',
+      otpCode: 'OTP कोड',
+      enterOTPCode: '6 अंकों का OTP दर्ज करें',
+      otpHint: 'अपने ईमेल पर भेजा गया 6 अंकों का कोड दर्ज करें',
+      verifyOTP: 'OTP सत्यापित करें',
+      verifying: 'सत्यापित कर रहा है...',
+      otpSentTo: 'OTP {email} पर भेजा गया',
+      changeEmail: 'ईमेल बदलें',
+      emailHint: 'OTP प्राप्त करने के लिए अपना ईमेल पता दर्ज करें',
+      // Additional translations for Login component  
+      loginToAccess: 'व्यक्तिगत योजनाओं तक पहुंचने और अपने आवेदनों को ट्रैक करने के लिए लॉगिन करें',
+      welcomeMessage: 'हमने आपके ईमेल पर एक सत्यापन कोड भेजा है',
+      enterOTPTitle: 'OTP दर्ज करें',
+      secureLogin: 'स्मार्ट सरकारी साथी द्वारा संचालित सुरक्षित लॉगिन',
+      otpSentToEmail: 'OTP {email} पर भेजा गया',
+      enterSixDigit: '6 अंकों का कोड दर्ज करें',
+      sixDigitHint: 'अपने ईमेल पर भेजा गया 6 अंकों का कोड दर्ज करें',
+      // About page translations
+      aboutTitle: 'स्मार्ट सरकारी साथी के बारे में',
+      aboutDescription: 'स्मार्ट सरकारी साथी एक AI-संचालित डिजिटल सहायक है जो भारत के हर नागरिक के लिए सरकारी योजनाओं, सेवाओं और जानकारी तक पहुंच को सरल बनाने के लिए डिज़ाइन किया गया है।',
+      ourMission: 'हमारा मिशन',
+      missionDescription: 'एक एकल, उपयोग में आसान प्लेटफॉर्म की पेशकश करके लोगों और अक्सर जटिल, बिखरी हुई सार्वजनिक सेवाओं की दुनिया के बीच की खाई को पाटना। हमारा लक्ष्य नवाचार समाधानों और सहयोगी साझेदारी के माध्यम से सभी नागरिकों के लिए संसाधनों और अवसरों तक न्यायसंगत पहुंच सुनिश्चित करना है।',
+      whatWeOffer: 'हम क्या प्रदान करते हैं',
+      searchDiscover: 'खोजें और खोजें',
+      searchDescription: 'आपकी प्रोफ़ाइल, स्थान और पात्रता के लिए प्रासंगिक सरकारी योजनाएं',
+      personalizedRecommendations: 'व्यक्तिगत सुझाव',
+      personalizedDescription: 'उम्र, पेशे, आय और अन्य कारकों के आधार पर',
+      multilingualSupport: 'बहुभाषी समर्थन',
+      multilingualDescription: 'भारत की विविध जनसंख्या में समावेशिता',
+      aiPowered: 'AI-संचालित',
+      aiDescription: 'सटीक, समय पर सेवाओं के लिए मशीन लर्निंग',
+      ourVision: 'हमारा दृष्टिकोण',
+      visionDescription1: 'हम एक ऐसे भविष्य की कल्पना करते हैं जहां कोई भी नागरिक उन अवसरों और समर्थन से वंचित न रहे जिसके वे हकदार हैं। हमारा प्लेटफॉर्म सटीक, समय पर और नागरिक-अनुकूल सेवाएं प्रदान करने के लिए AI, मशीन लर्निंग और सरकारी डेटा APIs को एकीकृत करता है।',
+      visionDescription2: 'स्मार्ट सरकारी साथी उस लक्ष्य की दिशा में पहला कदम है — सार्वजनिक सेवा पारिस्थितिकी तंत्र में नेविगेट करने में आपके विश्वसनीय साथी के रूप में काम करना।'
+    }
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === 'english' ? 'hindi' : 'english');
+  };
+
+  const t = (key) => {
+    return translations[language][key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}; 
