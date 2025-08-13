@@ -38,15 +38,62 @@ const News = () => {
       setLoading(true);
       setError(null);
 
-      // Fetch schemes from backend
-      const schemesRes = await fetch('/api/schemes');
-      const schemesData = await schemesRes.json();
-      setSchemes(schemesData.schemes || []);
+      // MOCK DATA: Remove fetch, use static data
+      const mockSchemes = [
+        {
+          id: 1,
+          name: 'National Merit Scholarship',
+          deadline: '2025-09-30',
+          eligibility: 'All Indian students in Class 12',
+          amount: '₹50,000',
+          applicationLink: 'https://scholarships.gov.in/',
+        },
+        {
+          id: 2,
+          name: 'State Talent Scholarship',
+          deadline: '2025-10-15',
+          eligibility: 'State board students with 85%+',
+          amount: '₹30,000',
+          applicationLink: 'https://state-scholarships.in/',
+        },
+        {
+          id: 3,
+          name: 'Women in STEM Scholarship',
+          deadline: '2025-08-31',
+          eligibility: 'Female students in STEM fields',
+          amount: '₹40,000',
+          applicationLink: 'https://womeninstem.org/apply',
+        },
+      ];
+      setSchemes(mockSchemes);
 
-      // Fetch scholarships from backend
-      const scholarshipsRes = await fetch('/api/scholarships');
-      const scholarshipsData = await scholarshipsRes.json();
-      setScholarships(scholarshipsData.scholarships || []);
+      const mockScholarships = [
+        {
+          id: 1,
+          name: 'National Merit Scholarship',
+          deadline: '2025-09-30',
+          eligibility: 'All Indian students in Class 12',
+          amount: '₹50,000',
+          applicationLink: 'https://scholarships.gov.in/',
+        },
+        {
+          id: 2,
+          name: 'State Talent Scholarship',
+          deadline: '2025-10-15',
+          eligibility: 'State board students with 85%+',
+          amount: '₹30,000',
+          applicationLink: 'https://state-scholarships.in/',
+        },
+        {
+          id: 3,
+          name: 'Women in STEM Scholarship',
+          deadline: '2025-08-31',
+          eligibility: 'Female students in STEM fields',
+          amount: '₹40,000',
+          applicationLink: 'https://womeninstem.org/apply',
+        },
+      ];
+      setScholarships(mockScholarships);
     } catch (err) {
       setError(err.message);
     } finally {

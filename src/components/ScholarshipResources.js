@@ -30,23 +30,34 @@ const ScholarshipResources = () => {
 
       // TODO: Replace with actual API call that uses LLM for personalized matching
       // This will be enhanced with LLM model to match scholarships based on user profile
-      const response = await fetch('http://localhost:5000/api/scholarships/personalized', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      // MOCK DATA: Remove fetch, use static scholarships
+      const mockScholarships = [
+        {
+          id: 1,
+          name: 'National Merit Scholarship',
+          deadline: '2025-09-30',
+          eligibility: 'All Indian students in Class 12',
+          amount: '₹50,000',
+          applicationLink: 'https://scholarships.gov.in/',
         },
-        body: JSON.stringify({
-          userId: currentUser.uid,
-          profile: userProfile
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch personalized scholarships');
-      }
-
-      const data = await response.json();
-      setScholarships(data);
+        {
+          id: 2,
+          name: 'State Talent Scholarship',
+          deadline: '2025-10-15',
+          eligibility: 'State board students with 85%+',
+          amount: '₹30,000',
+          applicationLink: 'https://state-scholarships.in/',
+        },
+        {
+          id: 3,
+          name: 'Women in STEM Scholarship',
+          deadline: '2025-08-31',
+          eligibility: 'Female students in STEM fields',
+          amount: '₹40,000',
+          applicationLink: 'https://womeninstem.org/apply',
+        },
+      ];
+      setScholarships(mockScholarships);
 
     } catch (err) {
       setError(err.message);
